@@ -13,6 +13,13 @@
     <% flash.each do |name, msg| -%>
       <%= content_tag :div, msg, class: name %>
     <% end -%>
+    <% if member_signed_in? %>
+      Signed in as: <%= current_member.name %>
+      <%= link_to "Sign Out", destroy_member_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Sign Up", new_member_registration_path %>
+      <%= link_to "Sign In", new_member_session_path %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
