@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authenticate_member!, except: [:index, :show]
+  before_action :authenticate_member!, except: [:index]
+  before_action :require_permission, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.all 
@@ -10,7 +11,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_member.posts.new(post_params)
     if @post.save
       flash.notice = "Successfully created a new post!"
       redirect_to root_url
@@ -45,5 +46,12 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:body)
+  end
+
+  def require_permission
+    if Post.find(params[:id]).member != current_member
+      flash.notice = "You don't have permission to do that!"
+      redirect_to root_url
+    end
   end
 end
