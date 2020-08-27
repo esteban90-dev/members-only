@@ -10,16 +10,47 @@
   </head>
 
   <body>
+  
     <% flash.each do |name, msg| -%>
       <%= content_tag :div, msg, class: name %>
     <% end -%>
-    <% if member_signed_in? %>
-      Signed in as: <%= current_member.name %>
-      <%= link_to "Sign Out", destroy_member_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "Sign Up", new_member_registration_path %>
-      <%= link_to "Sign In", new_member_session_path %>
-    <% end %>
+    
+
+
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <%= link_to root_path, class: "navbar-item" do %>
+          <h1 class="title is-5">Members Only</h1>
+        <% end %>
+      </div>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-end">
+          <% if member_signed_in? %>
+            <div class="navbar-item">
+              <p class="navbar-item">Signed in as <%= current_member.name %></p>
+              <div class="buttons">
+                <%= link_to "Sign Out", destroy_member_session_path, method: :delete, class: "button is-info is-light" %>
+              </div>
+            </div>
+          <% else %>
+            <div class="navbar-item">
+              <div class="buttons">
+                <%= link_to "Sign Up", new_member_registration_path, class: "button is-info" %>
+                <%= link_to "Sign In", new_member_session_path, class: "button is-info is-light" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+    
+
+   
+
+
+
     <%= yield %>
   </body>
 </html>
