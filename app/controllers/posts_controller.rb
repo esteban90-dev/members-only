@@ -7,17 +7,14 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def new
-    @post = Post.new
-  end
-
   def create
     @post = current_member.posts.new(post_params)
     if @post.save
       flash.notice = "Successfully created a new post!"
       redirect_to root_url
     else
-      render :new
+      @posts = Post.order(created_at: :desc)
+      render :index
     end
   end
 
