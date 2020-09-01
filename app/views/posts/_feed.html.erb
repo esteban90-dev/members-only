@@ -1,0 +1,25 @@
+<% @posts.each do |post| %>
+  <div class="box">
+    <div class="content is-size-5">
+      <p><%= post.body %></p>
+    </div>
+    <% if member_signed_in? %>
+      <div class="content has-text-right">
+        <% if current_member == post.member %>
+          <nav class="level">
+            <div class="level-left">
+              <%= link_to edit_post_path(post), class: "level-item" do %>
+                <span class="icon"><i class="fa fa-link" aria-hidden="true"></i></span>
+              <% end %>
+            </div>
+            <div class="level-right">
+              <p>Posted by you</p>
+            </div>
+          </nav>
+        <% else %>
+          <p>Posted by <%= post.member.name %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

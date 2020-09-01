@@ -1,23 +1,13 @@
-<h1>All Posts</h1>
-
-<% @posts.each do |post| %>
-  <p><%= post.body %></p>
-
-  <% if member_signed_in? %>
-    <%= post.member.name %>
-  <% end %>
-
-  <% if current_member == post.member %>
-    <%= link_to "edit", edit_post_path(post) %>
-    <%= link_to "delete", post_path(post), method: :delete %>
-  <% end %>
-
-  <br><br>
-
-<% end %>
-
-<br><br>
-
-<% if member_signed_in? %>
-  <%= link_to "Create a new post", new_post_path %>
-<% end %>
+<section class="section">
+  <div class="container">
+    <% if member_signed_in? %>
+      <%= render 'form' %>
+    <% else %>
+      <p class="has-text-weight-bold">
+        What others are saying... 
+        <%= link_to "see who wrote each post!", new_member_session_path %>
+      </p><br>
+    <% end %>
+    <%= render 'feed' %>
+  </div>
+</section>

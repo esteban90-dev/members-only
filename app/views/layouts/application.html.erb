@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -28,7 +29,7 @@
         <div class="navbar-end">
           <% if member_signed_in? %>
             <div class="navbar-item">
-              <p class="navbar-item">Signed in as <%= current_member.name %></p>
+              <p class="navbar-item">Signed in as &nbsp;<%= link_to current_member.name, edit_member_registration_path %></p>
               <div class="buttons">
                 <%= link_to "Sign Out", destroy_member_session_path, method: :delete, class: "button is-info is-light" %>
               </div>
