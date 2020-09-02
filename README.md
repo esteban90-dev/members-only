@@ -1,24 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Members Only is the second part of the [authentication project](https://www.theodinproject.com/lessons/authentication) from [The Odin Project](https://www.theodinproject.com/).  
 
-Things you may want to cover:
+This is an application that lists posts from members.  Before you log in, all you can see is the posts themselves, and wonder who wrote them.  Once you log in, you can see which members authored which posts, and you can create your own posts.   
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
