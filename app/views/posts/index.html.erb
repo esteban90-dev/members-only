@@ -1,7 +1,10 @@
 <section class="section">
   <div class="container">
     <% if member_signed_in? %>
-      <%= render 'form' %>
+      <div class="box">
+        <p class="has-text-weight-bold">Say what's on your mind</p><br>
+        <%= render 'form' %>
+      </div>
     <% else %>
       <p class="has-text-weight-bold">
         What others are saying... 
